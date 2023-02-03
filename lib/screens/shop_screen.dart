@@ -61,7 +61,14 @@ class _ShopScreenState extends State<ShopScreen> {
                if(snapshot.hasError){
                  return Center(child: Text(snapshot.error.toString()),);
                }else{
-                 return Text(snapshot.data![0].name);
+                 List<Product> productList=snapshot.data!;
+                 return ListView(
+                   children: productList.map((product) => ListTile(
+                     leading: Text(product.name),
+                     trailing: Icon(product.isBuy?Icons.shopping_basket:Icons.shopping_basket_outlined),
+
+                   ),).toList(),
+                 );
                }
                break;
              default:return Container();
