@@ -1,6 +1,7 @@
 class Product {
   String name;
   bool isBuy;
+  String? id;
 
   Product({required this.name, required this.isBuy});
 
