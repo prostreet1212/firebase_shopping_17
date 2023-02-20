@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_shopping_17/screens/verify_code_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:oktoast/oktoast.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -23,12 +22,12 @@ class _AuthScreenState extends State<AuthScreen> {
     phoneNumberController.text = '+79532602744';
     return Scaffold(
       appBar: AppBar(
-        title: Text('Вход'),
+        title: const Text('Вход'),
         centerTitle: true,
       ),
       body: Center(
         child: Padding(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -56,14 +55,14 @@ class _AuthScreenState extends State<AuthScreen> {
                   },
                   decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                             width: 3, color: Colors.blue), //<-- SEE HERE
                         borderRadius: BorderRadius.circular(50.0),
                       ),
                       hintText: 'Введите номер телефона'),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               ElevatedButton.icon(
@@ -90,7 +89,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
                             auth.verifyPhoneNumber(
                                 phoneNumber: phoneNumberController.text,
-                                timeout: Duration(milliseconds: 60),
+                                timeout: const Duration(milliseconds: 60),
                                 verificationCompleted: (_) {
                                   setState(() {
                                     loading = false;

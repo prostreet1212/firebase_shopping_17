@@ -13,9 +13,9 @@ class MainScreen extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if(snapshot.hasData){
-            return ShopScreen();
+            return const ShopScreen();
           }else{
-            return AuthScreen();
+            return const AuthScreen();
           }
         },
       ),

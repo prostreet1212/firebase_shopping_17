@@ -23,11 +23,11 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
     verifyCodeController.text='123456';
     return Scaffold(
       appBar: AppBar(
-        title: Text('Введите 6-значный код из смс'),
+        title: const Text('Введите 6-значный код из смс'),
         centerTitle: true,
       ),
       body: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
             TextFormField(
@@ -37,13 +37,13 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                   borderSide:
-                      BorderSide(width: 3, color: Colors.blue), //<-- SEE HERE
+                      const BorderSide(width: 3, color: Colors.blue), //<-- SEE HERE
                   borderRadius: BorderRadius.circular(50.0),
                 ),
                 hintText: '6-значный код',
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             ElevatedButton.icon(
@@ -77,7 +77,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                         Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ShopScreen()),
+                                builder: (context) => const ShopScreen()),
                                 (route) => false);
                         showToast('Вход успешно выполнен');
                       }).catchError((e) {

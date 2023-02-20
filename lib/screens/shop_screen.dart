@@ -1,7 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_cached_image/firebase_cached_image.dart';
 import 'package:firebase_shopping_17/model/product.dart';
 import 'package:firebase_shopping_17/screens/auth_screen.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -76,7 +74,6 @@ class _ShopScreenState extends State<ShopScreen> {
         .getDownloadURL()
         .then((value) => value)
         .catchError(() {});
-    print(imageUrl);
     yield imageUrl;
   }
 
@@ -99,10 +96,10 @@ class _ShopScreenState extends State<ShopScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Firebase shop'),
+          title: const Text('Firebase shop'),
           actions: [
             PopupMenuButton<String>(
-              icon: Icon(Icons.filter_alt),
+              icon: const Icon(Icons.filter_alt),
               //onSelected: _select,
               padding: EdgeInsets.zero,
               // initialValue: choices[_selection],
@@ -162,14 +159,14 @@ class _ShopScreenState extends State<ShopScreen> {
               },
             ),
             Padding(
-              padding: EdgeInsets.only(right: 20),
+              padding: const EdgeInsets.only(right: 20),
               child: GestureDetector(
-                child: Icon(Icons.exit_to_app),
+                child: const Icon(Icons.exit_to_app),
                 onTap: () {
                   FirebaseAuth.instance.signOut();
                   Navigator.pushAndRemoveUntil(
                       context,
-                      MaterialPageRoute(builder: (context) => AuthScreen()),
+                      MaterialPageRoute(builder: (context) => const AuthScreen()),
                       (route) => false);
                   showToast('Вы вышли из личного кабинета');
                 },
@@ -181,10 +178,10 @@ class _ShopScreenState extends State<ShopScreen> {
           streams:StreamTuple2(productStream, imageStream),
           builder: (context,snapshots){
             if(snapshots.snapshot1.connectionState==ConnectionState.waiting||snapshots.snapshot1.connectionState==ConnectionState.waiting){
-              return Center(child: CircularProgressIndicator(),);
+              return const Center(child:  CircularProgressIndicator(),);
             }else if(snapshots.snapshot1.connectionState==ConnectionState.active&&snapshots.snapshot1.connectionState==ConnectionState.active){
               if(snapshots.snapshot1.hasError){
-                return Text('errorka');
+                return const Text('errorka');
               }else if (snapshots.snapshot1.hasData&&snapshots.snapshot2.hasData){
                 List<Product> productList = snapshots.snapshot1.data!;
                 String url=snapshots.snapshot2.data!;
@@ -214,7 +211,7 @@ class _ShopScreenState extends State<ShopScreen> {
                                 ));
                           },
                           separatorBuilder: (BuildContext context, int index) {
-                            return Divider(
+                            return const Divider(
                               height: 10,
                               color: Colors.blue,
                             );
@@ -222,7 +219,7 @@ class _ShopScreenState extends State<ShopScreen> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         child: Row(
                           children: [
                             Expanded(
@@ -230,9 +227,9 @@ class _ShopScreenState extends State<ShopScreen> {
                                 height: 40,
                                 child: TextField(
                                     controller: productController,
-                                    decoration: InputDecoration(
+                                    decoration: const InputDecoration(
                                       enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
+                                        borderSide:  BorderSide(
                                             width: 1,
                                             color: Colors.blue), //<-- SEE HERE
                                       ),
@@ -240,7 +237,7 @@ class _ShopScreenState extends State<ShopScreen> {
                                     )),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             DropdownButton<String>(
@@ -255,11 +252,11 @@ class _ShopScreenState extends State<ShopScreen> {
                                 });
                               },
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             ElevatedButton(
-                              child: Text('Добавить'),
+                              child: const Text('Добавить'),
                               onPressed: () {
                                 addProduct();
                               },
@@ -271,11 +268,11 @@ class _ShopScreenState extends State<ShopScreen> {
                   ),
                 );
               }else{
-                return SizedBox();
+                return const SizedBox();
               }
             }
             else{
-              return Text('error');
+              return const Text('error');
             }
           },
         )
