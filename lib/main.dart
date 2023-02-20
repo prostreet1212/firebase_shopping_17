@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:oktoast/oktoast.dart';
-import 'firebase_options.dart';
+import 'firebase/firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,11 +39,11 @@ class MyApp extends StatelessWidget {
         textPadding: const EdgeInsets.all(8),
         duration: const Duration(seconds: 3),
         child: MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MainScreen(),
-    ));
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: const MainScreen(),
+        ));
   }
 }

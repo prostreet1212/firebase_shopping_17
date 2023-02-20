@@ -44,6 +44,7 @@ dependencies:
   firebase_cached_image: ^0.4.2
   multiple_stream_builder: ^3.0.2
   cached_network_image: ^3.2.3
+  flutter_bloc: ^8.0.1
 
 
 dev_dependencies:

@@ -70,8 +70,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '930495165546',
     projectId: 'fir-shopping17',
     storageBucket: 'fir-shopping17.appspot.com',
-    androidClientId: '930495165546-gfoph9jvqbpbm41kpu9h62oe5qcmb8m2.apps.googleusercontent.com',
-    iosClientId: '930495165546-988ubq43bn14tk8vprap2p72jlbr2drc.apps.googleusercontent.com',
+    androidClientId:
+        '930495165546-gfoph9jvqbpbm41kpu9h62oe5qcmb8m2.apps.googleusercontent.com',
+    iosClientId:
+        '930495165546-988ubq43bn14tk8vprap2p72jlbr2drc.apps.googleusercontent.com',
     iosBundleId: 'com.example.firebaseShopping17',
   );
 }

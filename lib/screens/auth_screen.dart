@@ -16,7 +16,6 @@ class _AuthScreenState extends State<AuthScreen> {
   FirebaseAuth auth = FirebaseAuth.instance;
   String? errorMessage;
 
-
   @override
   Widget build(BuildContext context) {
     phoneNumberController.text = '+79532602744';
@@ -56,7 +55,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderSide: const BorderSide(
-                            width: 3, color: Colors.blue), //<-- SEE HERE
+                            width: 3, color: Colors.blue),
                         borderRadius: BorderRadius.circular(50.0),
                       ),
                       hintText: 'Введите номер телефона'),
@@ -87,43 +86,7 @@ class _AuthScreenState extends State<AuthScreen> {
                               loading = true;
                             });
 
-                            auth.verifyPhoneNumber(
-                                phoneNumber: phoneNumberController.text,
-                                timeout: const Duration(milliseconds: 60),
-                                verificationCompleted: (_) {
-                                  setState(() {
-                                    loading = false;
-                                  });
-                                },
-                                verificationFailed: (e) {
-                                  if (e.message!.contains(
-                                      'The format of the phone number provided is incorrect')) {
-                                    //print('failed: Неккоректный номер телефона');
-                                    errorMessage =
-                                        'Неккоректный номер телефона';
-                                  } else {
-                                   errorMessage=e.message;
-                                  }
-
-                                  setState(() {
-                                    loading = false;
-                                  });
-                                },
-                                codeSent: (verificationId, token) {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => VerifyCodeScreen(
-                                          verificationId: verificationId),
-                                    ),
-                                  );
-                                },
-                                codeAutoRetrievalTimeout: (e) {
-                                  setState(() {
-                                    loading = false;
-                                  });
-                                  print(e.toString());
-                                });
+                            verifyPhoneNumber();
                           }
                         })
             ],
@@ -131,5 +94,44 @@ class _AuthScreenState extends State<AuthScreen> {
         ),
       ),
     );
+  }
+
+  void verifyPhoneNumber() {
+    auth.verifyPhoneNumber(
+        phoneNumber: phoneNumberController.text,
+        timeout: const Duration(milliseconds: 60),
+        verificationCompleted: (_) {
+          setState(() {
+            loading = false;
+          });
+        },
+        verificationFailed: (e) {
+          if (e.message!.contains(
+              'The format of the phone number provided is incorrect')) {
+            errorMessage = 'Неккоректный номер телефона';
+          } else {
+            errorMessage = e.message;
+          }
+
+          setState(() {
+            loading = false;
+          });
+        },
+        codeSent: (verificationId, token) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  VerifyCodeScreen(verificationId: verificationId),
+            ),
+          );
+        },
+        codeAutoRetrievalTimeout: (e) {
+          setState(() {
+            loading = false;
+          });
+          // ignore: avoid_print
+          print(e.toString());
+        });
   }
 }
