@@ -16,5 +16,5 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 ## импорт/экспорт данных для firebase эмулятора
-firebase emulators:export C:\firebase\
-firebase emulators:start --import C:\firebase\
+firebase emulators:export C:\firebase_emulator\
+firebase emulators:start --import C:\firebase_emulator\

@@ -18,7 +18,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
   @override
   Widget build(BuildContext context) {
-    phoneNumberController.text = '+79532602744';
+    phoneNumberController.text = '+79210123456';
     return Scaffold(
       appBar: AppBar(
         title: const Text('Вход'),
@@ -55,7 +55,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderSide: const BorderSide(
-                            width: 3, color: Colors.blue),
+                            width: 3, color: Colors.blue), //<-- SEE HERE
                         borderRadius: BorderRadius.circular(50.0),
                       ),
                       hintText: 'Введите номер телефона'),
@@ -85,8 +85,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             setState(() {
                               loading = true;
                             });
-
-                            verifyPhoneNumber();
+                            authPhoneNumber();
                           }
                         })
             ],
@@ -96,7 +95,7 @@ class _AuthScreenState extends State<AuthScreen> {
     );
   }
 
-  void verifyPhoneNumber() {
+  void authPhoneNumber() {
     auth.verifyPhoneNumber(
         phoneNumber: phoneNumberController.text,
         timeout: const Duration(milliseconds: 60),
@@ -108,6 +107,7 @@ class _AuthScreenState extends State<AuthScreen> {
         verificationFailed: (e) {
           if (e.message!.contains(
               'The format of the phone number provided is incorrect')) {
+            //print('failed: Неккоректный номер телефона');
             errorMessage = 'Неккоректный номер телефона';
           } else {
             errorMessage = e.message;

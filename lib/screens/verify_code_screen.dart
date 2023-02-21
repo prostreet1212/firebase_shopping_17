@@ -20,7 +20,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    verifyCodeController.text='123456';
+    //verifyCodeController.text='123456';
     return Scaffold(
       appBar: AppBar(
         title: const Text('Введите 6-значный код из смс'),
